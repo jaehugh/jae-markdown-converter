@@ -4,6 +4,7 @@ Privacy-first conversion of local documents into LLM-ready Markdown.
 
 ## Supported formats
 
+- PDF
 - DOCX
 - HTML
 - JSON
@@ -12,7 +13,8 @@ Privacy-first conversion of local documents into LLM-ready Markdown.
 - TXT
 
 Files are processed in the visitor's browser and are not uploaded or stored.
-PDF conversion remains available through
+PDF text is extracted locally in the browser with pdf.js. Scanned or
+image-only PDFs that need OCR are better handled by
 [Document Parser](https://documents.johnhughesai.com).
 
 ## Upstream
