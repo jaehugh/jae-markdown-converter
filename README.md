@@ -13,6 +13,8 @@ Privacy-first conversion of local documents into LLM-ready Markdown.
 - TXT
 
 Files are processed in the visitor's browser and are not uploaded or stored.
+There is no fixed file-size cutoff. Large files may be slow or exceed a
+device's available browser memory.
 PDF text is extracted locally in the browser with pdf.js. Scanned or
 image-only PDFs that need OCR are better handled by
 [Document Parser](https://documents.johnhughesai.com).

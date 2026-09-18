@@ -22,7 +22,18 @@ test("health and capabilities routes are available", async () => {
   assert.equal((await health.json()).service, "jae-markdown-converter");
 
   const capabilities = await routeRequest(new Request("https://example.com/api/capabilities"));
-  assert.equal((await capabilities.json()).privacy.processing, "browser_only");
+  const body = await capabilities.json();
+  assert.equal(body.privacy.processing, "browser_only");
+  assert.equal(body.limits.file_bytes, null);
+  assert.ok(body.inputs.includes("pdf"));
+});
+
+test("the browser accepts PDFs without a fixed byte rejection", async () => {
+  const response = await routeRequest(new Request("https://example.com/"));
+  const html = await response.text();
+  assert.match(html, /No fixed file-size limit/);
+  assert.match(html, /pdfMarkdown\(await file\.arrayBuffer\(\)\)/);
+  assert.doesNotMatch(html, /MAX_BYTES|10 MB limit/);
 });
 
 test("unsupported methods are rejected", async () => {
